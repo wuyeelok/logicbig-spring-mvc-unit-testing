@@ -1,0 +1,13 @@
+# Compiled class file
+*.class
+
+# ignore Maven generated target folder
+target/
+
+# for Eclipse IDE
+.project
+.classpath
+.settings
+
+#for VS Code
+.vscode/
