@@ -21,26 +21,31 @@ import org.springframework.web.context.WebApplicationContext;
 @ContextConfiguration(classes = MyWebConfig.class)
 public class MyMvcControllerTest {
 
-    @Autowired
-    private WebApplicationContext wac;
+	@Autowired
+	private WebApplicationContext wac;
 
-    private MockMvc mockMvc;
+	private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        DefaultMockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(this.wac);
-        this.mockMvc = builder.build();
-    }
+	@Before
+	public void setup() {
+		DefaultMockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(this.wac);
+		this.mockMvc = builder.build();
+	}
 
-    @Test
-    public void testMyMvcController() throws Exception {
-        ResultMatcher ok = MockMvcResultMatchers.status().isOk();
-        ResultMatcher msg = MockMvcResultMatchers.model()
-                            .attribute("msg", "Spring quick start!!");
+	@Test
+	public void testMyMvcController() throws Exception {
+		ResultMatcher ok = MockMvcResultMatchers.status().isOk();
+		ResultMatcher msg = MockMvcResultMatchers.model().attribute("msg", "Spring quick start!!");
 
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/");
-        this.mockMvc.perform(builder)
-               .andExpect(ok)
-               .andExpect(msg);
-    }
+		MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/");
+		this.mockMvc.perform(builder).andExpect(ok).andExpect(msg);
+	}
+
+	@Test
+	public void testMyMvcControllerShowCoverHomePage() throws Exception {
+		ResultMatcher ok = MockMvcResultMatchers.status().isOk();
+
+		MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/esip/home");
+		this.mockMvc.perform(builder).andExpect(ok);
+	}
 }
