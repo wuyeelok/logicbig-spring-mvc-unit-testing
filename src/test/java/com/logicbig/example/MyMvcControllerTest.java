@@ -44,8 +44,11 @@ public class MyMvcControllerTest {
 	@Test
 	public void testMyMvcControllerShowCoverHomePage() throws Exception {
 		ResultMatcher ok = MockMvcResultMatchers.status().isOk();
+		ResultMatcher springDispatcherURLPattern = MockMvcResultMatchers.model().attribute("springDispatcherURLPattern",
+				"");
+		ResultMatcher junctionPath = MockMvcResultMatchers.model().attribute("junctionPath", "");
 
 		MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/esip/home");
-		this.mockMvc.perform(builder).andExpect(ok);
+		this.mockMvc.perform(builder).andExpect(ok).andExpect(springDispatcherURLPattern).andExpect(junctionPath);
 	}
 }

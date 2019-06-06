@@ -19,6 +19,9 @@ public class MyMvcController {
 
 	@RequestMapping(value = "/esip/home", method = RequestMethod.GET)
 	public String showCoverHomePage(ModelMap model, HttpServletRequest request) {
+		model.addAttribute("springDispatcherURLPattern", "");
+		model.addAttribute("junctionPath", "");
+
 		return "esip/cover_home_page";
 	}
 }
