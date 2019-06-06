@@ -41,6 +41,8 @@ public class MyMvcControllerTest {
 		this.mockMvc.perform(builder).andExpect(ok).andExpect(msg);
 	}
 
+	// TODO: This is an integration test, not unit test. Because it has
+	// ConfigUtilService.java dependency. Need to mock ConfigUtilService.java.
 	@Test
 	public void testMyMvcControllerShowCoverHomePage() throws Exception {
 		ResultMatcher ok = MockMvcResultMatchers.status().isOk();
